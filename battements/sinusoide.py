@@ -10,18 +10,12 @@ Tracer la représentation graphique d'une sinusoïde : s(t) = a*cos(omega*t + ph
 import numpy as np
 import matplotlib.pyplot as plt
 
+sauvegarder_grapiques = False
 #==============================================================================
 ## Paramétrage de pyplot :
 #==============================================================================
 # Graduations en gras et en plus gros :
-font = {'family' : 'sans',
-        'weight' : 'bold',
-        'size'   : 12}
-plt.rc('font', **font)
-
-# Activation du mode interactif :
-plt.ion()
-
+plt.rc('font', weight="bold", size=12)
 
 #==============================================================================
 ## Paramètres numériques :
@@ -66,6 +60,9 @@ fig = plt.figure(nom_de_la_figure)
 plt.plot(t,s)
 plt.xlabel('t en s',fontweight = 'bold')
 plt.ylabel('s(t) en u.a.',fontweight = 'bold')
-plt.grid()
+plt.grid(True)
 plt.tight_layout()
-fig.savefig(nom_de_la_figure+'.pdf')
+plt.show()
+
+if sauvegarder_grapiques :
+    fig.savefig(nom_de_la_figure+'.pdf')
