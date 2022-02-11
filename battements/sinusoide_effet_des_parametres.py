@@ -7,33 +7,18 @@ Tracer la représentation graphique d'une sinusoïde et voir l'effet des
 différents paramètres sur le signal.
 """
 
-# Imports de bibliothèques :
+## Imports de bibliothèques :
 import numpy as np
 import matplotlib.pyplot as plt
 
-#==============================================================================
+## Booléen pour décider de sauvegarder les graphiques ou non :
+sauvegarder_grapiques = False
+
 ## Paramétrage de pyplot :
-#==============================================================================
-# Graduations en gras et en plus gros :
-font = {'family' : 'sans',
-        'weight' : 'bold',
-        'size'   : 12}
-plt.rc('font', **font)
+plt.rc('font', weight="bold", size=12) # Graduations en gras et en plus gros
+N = 1000 # Nombre de points pour les graphiques
 
-# Activation du mode interactif :
-plt.ion()
-
-
-#==============================================================================
-## Paramètres numériques :
-#==============================================================================
-# Nombre de points pour les graphiques :
-N = 1000
-
-
-#==============================================================================
 ## Paramètres physiques :
-#==============================================================================
 # Référence :
 a_ref = 1. # u.a, amplitude
 f_ref = 1. # Hz, fréquence
@@ -48,10 +33,7 @@ phi = 0. # rad, phase à l'origine
 omega = 2*np.pi*f # pulsation
 T = 1/f # période
 
-
-#==============================================================================
 ## Grandeurs à représenter :
-#==============================================================================
 # On calcule les abscisses du graphe (ici les dates auxquelles calculer s(t) ) :
 t_min = -1.*T_ref # En nombre de périodes, c'est le plus pertinent
 t_max = 2.*T_ref
@@ -61,17 +43,17 @@ t = np.linspace(t_min,t_max,N)
 s_ref = a_ref*np.cos(omega_ref*t+phi_ref)
 s = a*np.cos(omega*t+phi)
 
-
-#==============================================================================
 ## Représentation graphique :
-#==============================================================================
 nom_de_la_figure = "sinusoide_effet_des_parametres"
 fig = plt.figure(nom_de_la_figure)
 plt.plot(t,s,label = "Signal")
 plt.plot(t,s_ref,'--',label = "Référence")
 plt.xlabel('t en s',fontweight = 'bold')
 plt.ylabel('s(t) en u.a.',fontweight = 'bold')
-plt.grid()
+plt.grid(True)
 plt.legend()
 plt.tight_layout()
-fig.savefig(nom_de_la_figure+'.pdf')
+plt.show()
+
+if sauvegarder_grapiques :
+    fig.savefig(nom_de_la_figure+'.pdf')
