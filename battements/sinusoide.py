@@ -14,14 +14,8 @@ sauvegarder_grapiques = False
 #==============================================================================
 ## Paramétrage de pyplot :
 #==============================================================================
-# Graduations en gras et en plus gros :
-plt.rc('font', weight="bold", size=12)
-
-#==============================================================================
-## Paramètres numériques :
-#==============================================================================
-# Nombre de points pour les graphiques :
-N = 1000
+plt.rc('font', weight="bold", size=12) # Graduations en gras et en plus gros
+N = 1000 # Nombre de points pour les graphiques
 
 #==============================================================================
 ## Paramètres physiques :
