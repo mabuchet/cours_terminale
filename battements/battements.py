@@ -6,29 +6,18 @@ BUT :
 Tracer la représentation graphique d'un phénomène de battements.
 """
 
+## Imports de bibliothèques :
 import numpy as np
 import matplotlib.pyplot as plt
 
-#==============================================================================
+## Booléen pour décider de sauvegarder les graphiques ou non :
+sauvegarder_grapiques = False
+
 ## Paramétrage de pyplot :
-#==============================================================================
-# Graduations en gras et en plus gros :
-font = {'family' : 'sans',
-        'weight' : 'bold',
-        'size'   : 12}
-plt.rc('font', **font)
+plt.rc('font', weight="bold", size=12) # Graduations en gras et en plus gros
+N = 1000 # Nombre de points pour les graphiques
 
-# Activation du mode interactif :
-plt.ion()
-
-#==============================================================================
-## Paramètres numériques :
-#==============================================================================
-N = 1000 # nombre de points pour les graphiques
-
-#==============================================================================
 ## Paramètres physiques :
-#==============================================================================
 # Amplitude des deux signaux :
 a = 1.5
 a_1 = a # u.a.
@@ -64,9 +53,7 @@ T_e = 1/f_e
 phi_p = ( phi_1 + phi_2 ) / 2
 phi_e = ( phi_1 - phi_2 ) / 2
 
-#==============================================================================
 ## Grandeurs à représenter :
-#==============================================================================
 # On calcule les abscisses du graphe (ici les dates auxquelles calculer s(t) ) :
 t_min = 0
 t_max = 1.*T_e # 1. fois la période de l'enveloppe
@@ -81,9 +68,7 @@ porteuse = np.cos(omega_p*t+phi_p)
 enveloppe_plus = 2*a*np.cos(omega_e*t+phi_e)
 #enveloppe_moins = -enveloppe_plus
 
-#==============================================================================
 ## Représentations graphiques :
-#==============================================================================
 nom_de_la_figure = "battements"
 fig = plt.figure(nom_de_la_figure)
 plt.plot(t,s,label = "Battement")
@@ -92,7 +77,10 @@ plt.plot(t,enveloppe_plus,'r--',label = "Enveloppe")
 plt.plot(t,porteuse,':',label = "Porteuse")
 plt.xlabel('t en s',fontweight = 'bold')
 plt.ylabel('s(t) en u.a.',fontweight = 'bold')
-plt.grid()
+plt.grid(True)
 plt.legend()
-#plt.axis('off')
-fig.savefig(nom_de_la_figure+'.pdf')
+#plt.axis('off') # pour retirer les axes (utilisé pour l'image d'intro du poly)
+plt.show()
+
+if sauvegarder_grapiques :
+    fig.savefig(nom_de_la_figure+'.pdf')
